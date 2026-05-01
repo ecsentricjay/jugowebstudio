@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import Image from 'next/image'
 
 // ─── BRAND ────────────────────────────────────────────────────────────────────
 const B = {
@@ -21,19 +20,8 @@ const B = {
   card:    'rgba(255,255,255,0.04)',
 }
 
-// ─── LOGO IMAGE ──────────────────────────────────────────────────────────────
-function JWLogo({ size = 40, light }: { size?: number; light?: boolean }) {
-  return (
-    <Image
-      src="/logo.png"
-      alt="JugoWeb Studio Logo"
-      width={size}
-      height={size}
-      style={{ objectFit: 'contain' }}
-      priority
-    />
-  )
-}
+// ─── LOGO (from logo2.png) ────────────────────────────────────────────────────
+// Logo is now served from the public folder as logo2.png
 
 // ─── PORTFOLIO ITEMS ──────────────────────────────────────────────────────────
 const PORTFOLIO = [
@@ -50,37 +38,37 @@ const SERVICES = [
     icon: '🌐', title: 'Website Design & Development',
     desc: 'Custom, mobile-first websites built in React/Next.js. Fast, SEO-ready and built to convert visitors into customers.',
     bullets: ['Delivered in 5–7 days','Mobile-first design','Free 1-year maintenance'],
-    from: '£299',
+    from: '£209',
   },
   {
     icon: '🛒', title: 'E-Commerce Stores',
     desc: 'Online stores with secure payments, product management and order tracking — fully set up and ready to trade.',
     bullets: ['Stripe & PayPal ready','Product upload included','Inventory management'],
-    from: '£599',
+    from: '£419',
   },
   {
     icon: '📍', title: 'Google Business Profile',
     desc: 'Get your business properly listed, verified and optimised on Google Maps so local customers can find you instantly.',
     bullets: ['Full profile setup','Photo & copy optimised','Review strategy included'],
-    from: '£79',
+    from: '£55',
   },
   {
     icon: '🔍', title: 'Local SEO',
     desc: 'Rank higher on Google in your city. Monthly work that builds lasting visibility — not quick fixes that fade.',
     bullets: ['Keyword research','On-page & local SEO','Monthly reporting'],
-    from: '£149/mo',
+    from: '£104/mo',
   },
   {
     icon: '📱', title: 'Social Media Setup',
     desc: 'Professional Facebook, Instagram and TikTok presence set up, branded and ready to go — with a content strategy.',
     bullets: ['Full profile branding','Content plan included','3 starter posts created'],
-    from: '£129',
+    from: '£90',
   },
   {
     icon: '🛡️', title: 'Website Maintenance',
     desc: 'Keep your site fast, secure and up to date. Updates, backups, security monitoring and small changes handled for you.',
     bullets: ['Monthly updates & backups','Security monitoring','Unlimited small edits'],
-    from: '£29/mo',
+    from: '£20/mo',
   },
 ]
 
@@ -101,7 +89,7 @@ const TESTIMONIALS = [
 const FAQS = [
   { q: 'Where is JugoWeb Studio based?',              a: 'We\'re a remote-first digital agency. Our team works internationally, which is how we\'re able to offer prices well below UK agency rates — without compromising on quality, speed or communication.' },
   { q: 'How long does a website take?',               a: 'Most standard websites are delivered in 5–7 working days. E-commerce stores typically take 7–10 days. We\'ll give you a specific timeline before we start.' },
-  { q: 'What\'s included in the free 1-year maintenance?', a: 'Security updates, software updates, monthly backups, uptime monitoring, and small content changes (text, images, opening hours etc.). After year one, maintenance continues at £29/month.' },
+  { q: 'What\'s included in the free 1-year maintenance?', a: 'Security updates, software updates, monthly backups, uptime monitoring, and small content changes (text, images, opening hours etc.). After year one, maintenance continues at £20/month.' },
   { q: 'Do I need to provide content and images?',    a: 'Not necessarily. We can write the copy for your site and source professional stock photography at no extra charge. If you have your own photos and text, even better — we\'ll use those.' },
   { q: 'How do I pay?',                               a: 'We take 50% upfront and 50% on delivery. We accept bank transfer, PayPal, and card payments via Stripe. All prices are in GBP, USD or your local currency — just ask.' },
   { q: 'What if I need changes after the site goes live?', a: 'Minor changes are included in your free maintenance year. For larger additions or redesigns, we\'ll quote you a fair fixed price — no hourly rates, no surprises.' },
@@ -161,7 +149,7 @@ function Navbar({ onContact }: { onContact: () => void }) {
 
         {/* Logo */}
         <div onClick={() => go('home')} style={{ cursor:'pointer', display:'flex', alignItems:'center', gap:10 }}>
-          <JWLogo size={44} light />
+          <img src="/logo2.png" alt="JugoWeb Studio" style={{ height:44, width:'auto' }} />
           <div>
             <div style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", fontSize:17, fontWeight:800, color:'#fff', letterSpacing:'-0.01em', lineHeight:1.1 }}>JugoWeb<span style={{ color:B.teal }}> Studio</span></div>
             <div style={{ fontFamily:'sans-serif', fontSize:9, color:'rgba(255,255,255,0.4)', letterSpacing:'0.18em', textTransform:'uppercase' }}>Web Design & Digital</div>
@@ -222,14 +210,14 @@ function Navbar({ onContact }: { onContact: () => void }) {
 // ─── HERO ─────────────────────────────────────────────────────────────────────
 function Hero({ onContact }: { onContact: () => void }) {
   return (
-    <section id="home" style={{ background:B.navy, minHeight:'100vh', display:'flex', alignItems:'center', position:'relative', overflow:'hidden', paddingTop:70 }}>
+    <section id="home" style={{ background:B.navy, minHeight:'100vh', display:'flex', alignItems:'center', position:'relative', overflowX:'hidden', paddingTop:70 }}>
       {/* Background grid */}
       <div style={{ position:'absolute', inset:0, backgroundImage:`linear-gradient(rgba(26,188,156,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26,188,156,0.04) 1px, transparent 1px)`, backgroundSize:'60px 60px', pointerEvents:'none' }} />
       {/* Glow */}
       <div style={{ position:'absolute', top:'20%', right:'-10%', width:600, height:600, borderRadius:'50%', background:`radial-gradient(circle, rgba(26,188,156,0.08) 0%, transparent 65%)`, pointerEvents:'none' }} />
       <div style={{ position:'absolute', bottom:'-5%', left:'-5%', width:400, height:400, borderRadius:'50%', background:`radial-gradient(circle, rgba(14,165,233,0.06) 0%, transparent 65%)`, pointerEvents:'none' }} />
 
-      <div style={{ maxWidth:1200, margin:'0 auto', padding:'80px 32px', width:'100%', display:'grid', gridTemplateColumns:'1fr 1fr', gap:80, alignItems:'center' }} className="jw-hero-grid">
+      <div style={{ maxWidth:1200, margin:'0 auto', padding:'80px 20px', width:'100%', display:'grid', gridTemplateColumns:'1fr 1fr', gap:48, alignItems:'center' }} className="jw-hero-grid">
 
         {/* Left */}
         <div>
@@ -256,7 +244,7 @@ function Hero({ onContact }: { onContact: () => void }) {
             ))}
           </div>
 
-          <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
+          <div style={{ display:'flex', gap:12, flexWrap:'wrap', width:'100%' }}>
             <button onClick={onContact}
               style={{ background:`linear-gradient(135deg, ${B.teal}, #0ea5e9)`, border:'none', color:'#fff', padding:'15px 36px', borderRadius:8, fontSize:16, fontWeight:800, cursor:'pointer', fontFamily:'sans-serif', boxShadow:`0 8px 32px rgba(26,188,156,0.4)`, transition:'transform 0.2s, box-shadow 0.2s', letterSpacing:'0.01em' }}
               onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform='translateY(-2px)'; el.style.boxShadow=`0 12px 40px rgba(26,188,156,0.5)` }}
@@ -270,9 +258,9 @@ function Hero({ onContact }: { onContact: () => void }) {
           </div>
 
           {/* Stats */}
-          <div style={{ display:'flex', gap:0, marginTop:64, paddingTop:32, borderTop:'1px solid rgba(255,255,255,0.08)' }}>
+          <div style={{ display:'flex', gap:0, marginTop:48, paddingTop:24, borderTop:'1px solid rgba(255,255,255,0.08)', flexWrap:'wrap' }}>
             {[{n:20,s:'+',l:'Websites delivered'},{n:5,s:' countries',l:'We work in'},{n:100,s:'%',l:'On-time delivery'},{n:1,s:' year',l:'Free maintenance'}].map((st,i) => (
-              <div key={st.l} style={{ flex:1, paddingRight:20, borderRight: i<3 ? '1px solid rgba(255,255,255,0.08)' : 'none', marginRight:20 }}>
+              <div key={st.l} style={{ minWidth:'80px', paddingRight:16, borderRight: i<3 ? '1px solid rgba(255,255,255,0.08)' : 'none', marginRight:16, marginBottom:12 }}>
                 <div style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", fontSize:28, fontWeight:900, color:B.teal, lineHeight:1 }}>
                   <Counter end={st.n} suffix={st.s} />
                 </div>
@@ -303,8 +291,8 @@ function Hero({ onContact }: { onContact: () => void }) {
 
           {/* Floating metric */}
           <div style={{ position:'absolute', bottom:80, right:0, background:`linear-gradient(135deg, ${B.teal}, #0ea5e9)`, borderRadius:12, padding:'16px 20px', boxShadow:'0 12px 40px rgba(26,188,156,0.4)', minWidth:150 }}>
-            <div style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", fontSize:28, fontWeight:900, color:'#fff', lineHeight:1 }}>£299</div>
-            <div style={{ fontFamily:'sans-serif', fontSize:11, color:'rgba(255,255,255,0.8)', marginTop:4, letterSpacing:'0.06em', textTransform:'uppercase' }}>Websites from</div>
+            <div style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", fontSize:28, fontWeight:900, color:'#fff', lineHeight:1 }}>£209</div>
+            <div style={{ fontFamily:'sans-serif', fontSize:11, color:'rgba(255,255,255,0.8)', marginTop:4, letterSpacing:'0.06em', textTransform:'uppercase' }}>starting from</div>
           </div>
 
           {/* Floating delivery badge */}
@@ -319,7 +307,8 @@ function Hero({ onContact }: { onContact: () => void }) {
       </div>
       <style>{`
         @keyframes jwPulse { 0%,100%{opacity:0.5;transform:scale(0.9)} 50%{opacity:1;transform:scale(1.1)} }
-        @media(max-width:900px) { .jw-hero-grid{grid-template-columns:1fr!important} .jw-hero-right{display:none!important} }
+        @media(max-width:900px) { .jw-hero-grid{grid-template-columns:1fr!important;gap:32px!important;padding:60px 20px!important} .jw-hero-right{display:none!important} }
+        @media(max-width:600px) { .jw-hero-grid{padding:48px 16px!important} }
       `}</style>
     </section>
   )
@@ -332,7 +321,7 @@ function TrustedBy() {
     <div style={{ background:B.navy2, borderTop:`1px solid ${B.border}`, borderBottom:`1px solid ${B.border}`, padding:'16px 0', overflow:'hidden' }}>
       <div style={{ display:'flex', gap:48, animation:'jwScroll 22s linear infinite', whiteSpace:'nowrap', width:'max-content' }}>
         {[...names,...names,...names].map((n,i) => (
-          <span key={i} style={{ fontFamily:'sans-serif', fontSize:13, color:'rgba(255,255,255,0.4)', display:'flex', alignItems:'center', gap:16, letterSpacing:'0.04em' }}>
+          <span key={i} style={{ fontFamily:'sans-serif', fontSize:12, color:'rgba(255,255,255,0.4)', display:'flex', alignItems:'center', gap:16, letterSpacing:'0.04em' }}>
             {n} <span style={{ color:B.teal, fontSize:10 }}>✦</span>
           </span>
         ))}
@@ -346,7 +335,7 @@ function TrustedBy() {
 function Services({ onContact }: { onContact: () => void }) {
   const [hover, setHover] = useState<number|null>(null)
   return (
-    <section id="services" style={{ background:B.offwhite, padding:'110px 32px' }}>
+    <section id="services" style={{ background:B.offwhite, padding:'80px 20px' }}>
       <div style={{ maxWidth:1200, margin:'0 auto' }}>
         <div style={{ textAlign:'center', marginBottom:64 }}>
           <div style={{ display:'inline-block', background:B.tealDim, border:`1px solid ${B.tealBdr}`, color:B.teal, fontSize:11, fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'5px 16px', borderRadius:100, marginBottom:16, fontFamily:'sans-serif' }}>What We Do</div>
@@ -358,10 +347,10 @@ function Services({ onContact }: { onContact: () => void }) {
           </p>
         </div>
 
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(340px, 1fr))', gap:2 }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(min(340px, 100%), 1fr))', gap:2 }}>
           {SERVICES.map((s,i) => (
             <div key={s.title}
-              style={{ background: hover===i ? B.navy : B.white, borderLeft: hover===i ? `4px solid ${B.teal}` : '4px solid transparent', borderTop:`1px solid ${hover===i ? 'transparent' : B.borderL}`, borderRight:`1px solid ${hover===i ? 'transparent' : B.borderL}`, borderBottom:`1px solid ${hover===i ? 'transparent' : B.borderL}`, padding:'32px 28px', transition:'all 0.25s', cursor:'default' }}
+              style={{ background: hover===i ? B.navy : B.white, borderTop:`1px solid ${hover===i ? 'transparent' : B.borderL}`, borderRight:`1px solid ${hover===i ? 'transparent' : B.borderL}`, borderBottom:`1px solid ${hover===i ? 'transparent' : B.borderL}`, borderLeft: hover===i ? `4px solid ${B.teal}` : `4px solid transparent`, padding:'32px 28px', transition:'all 0.25s', cursor:'default' }}
               onMouseEnter={() => setHover(i)}
               onMouseLeave={() => setHover(null)}
             >
@@ -397,7 +386,7 @@ function Services({ onContact }: { onContact: () => void }) {
 function Portfolio({ onContact }: { onContact: () => void }) {
   const [hov, setHov] = useState<number|null>(null)
   return (
-    <section id="work" style={{ background:B.navy, padding:'110px 32px' }}>
+    <section id="work" style={{ background:B.navy, padding:'80px 20px' }}>
       <div style={{ maxWidth:1200, margin:'0 auto' }}>
         <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', marginBottom:56, flexWrap:'wrap', gap:20 }}>
           <div>
@@ -411,7 +400,7 @@ function Portfolio({ onContact }: { onContact: () => void }) {
           </p>
         </div>
 
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(340px, 1fr))', gap:16 }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(min(340px, 100%), 1fr))', gap:16 }}>
           {PORTFOLIO.map((p,i) => (
             <a key={p.name} href={p.url} target="_blank" rel="noreferrer"
               style={{ borderRadius:12, overflow:'hidden', position:'relative', cursor:'pointer', border:`1px solid ${B.border}`, transition:'transform 0.3s, box-shadow 0.3s', transform: hov===i ? 'translateY(-5px)' : 'none', boxShadow: hov===i ? '0 20px 60px rgba(0,0,0,0.4)' : 'none', display:'block', textDecoration:'none' }}
@@ -457,10 +446,10 @@ function Portfolio({ onContact }: { onContact: () => void }) {
 // ─── PROCESS ──────────────────────────────────────────────────────────────────
 function Process({ onContact }: { onContact: () => void }) {
   return (
-    <section style={{ background:B.offwhite, padding:'110px 32px' }}>
+    <section style={{ background:B.offwhite, padding:'80px 20px' }}>
       <div style={{ maxWidth:1200, margin:'0 auto' }}>
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1.8fr', gap:80, alignItems:'start' }} className="jw-proc-grid">
-          <div style={{ position:'sticky', top:120 }}>
+          <div className="jw-proc-left">
             <div style={{ fontFamily:'sans-serif', fontSize:11, color:B.teal, letterSpacing:'0.16em', textTransform:'uppercase', fontWeight:700, marginBottom:12 }}>How It Works</div>
             <h2 style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", fontSize:'clamp(26px,4vw,48px)', fontWeight:900, color:B.ink, marginBottom:20, letterSpacing:'-0.02em', lineHeight:1.1 }}>
               Simple.<br />Fast.<br />Done.
@@ -472,7 +461,7 @@ function Process({ onContact }: { onContact: () => void }) {
               style={{ background:B.ink, border:'none', color:'#fff', padding:'13px 28px', borderRadius:8, fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'sans-serif', transition:'background 0.2s' }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background=B.navy3 }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background=B.ink }}
-            >Let's Get Started →</button>
+            >Let&apos;s Get Started →</button>
           </div>
           <div>
             {PROCESS.map((p,i) => (
@@ -492,7 +481,7 @@ function Process({ onContact }: { onContact: () => void }) {
           </div>
         </div>
       </div>
-      <style>{`@media(max-width:860px){.jw-proc-grid{grid-template-columns:1fr!important}}`}</style>
+      <style>{`@media(max-width:860px){.jw-proc-grid{grid-template-columns:1fr!important;gap:40px!important}} .jw-proc-left{position:sticky;top:120px} @media(max-width:860px){.jw-proc-left{position:static!important;top:auto!important}}`}</style>
     </section>
   )
 }
@@ -502,8 +491,8 @@ function Pricing({ onContact }: { onContact: () => void }) {
   const plans = [
     {
       name: 'Starter',
-      price: '£299',
-      usd: '$380',
+      price: '£209',
+      usd: '$265',
       desc: 'Perfect for getting your business online fast.',
       items: ['5-page custom website','Mobile-first design','Contact form + WhatsApp button','Google Business setup','1 year free maintenance','Delivered in 5–7 days'],
       cta: 'Get Started',
@@ -511,8 +500,8 @@ function Pricing({ onContact }: { onContact: () => void }) {
     },
     {
       name: 'Business',
-      price: '£549',
-      usd: '$699',
+      price: '£384',
+      usd: '$489',
       desc: 'For businesses that want to stand out and convert.',
       items: ['Up to 10 pages','Everything in Starter','Online booking or order form','Local SEO setup','3 months social media setup','Priority 3-day delivery'],
       cta: 'Most Popular',
@@ -520,8 +509,8 @@ function Pricing({ onContact }: { onContact: () => void }) {
     },
     {
       name: 'E-Commerce',
-      price: '£799',
-      usd: '$999',
+      price: '£559',
+      usd: '$699',
       desc: 'Sell online with a full store, built to trade from day one.',
       items: ['Full online store','Product upload (up to 50 items)','Stripe & PayPal payments','Order management system','Everything in Business','7-day delivery'],
       cta: 'Get a Store',
@@ -530,7 +519,7 @@ function Pricing({ onContact }: { onContact: () => void }) {
   ]
 
   return (
-    <section id="pricing" style={{ background:B.navy, padding:'110px 32px' }}>
+    <section id="pricing" style={{ background:B.navy, padding:'80px 20px' }}>
       <div style={{ maxWidth:1100, margin:'0 auto' }}>
         <div style={{ textAlign:'center', marginBottom:64 }}>
           <div style={{ fontFamily:'sans-serif', fontSize:11, color:B.teal, letterSpacing:'0.16em', textTransform:'uppercase', fontWeight:700, marginBottom:12 }}>Transparent Pricing</div>
@@ -557,7 +546,7 @@ function Pricing({ onContact }: { onContact: () => void }) {
               )}
               <div style={{ fontFamily:'sans-serif', fontSize:12, color:B.teal, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', marginBottom:10 }}>{pl.name}</div>
               <div style={{ display:'flex', alignItems:'baseline', gap:8, marginBottom:6 }}>
-                <span style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", fontSize:44, fontWeight:900, color:'#fff', lineHeight:1 }}>{pl.price}</span>
+                <span style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", fontSize:'clamp(30px,6vw,44px)', fontWeight:900, color:'#fff', lineHeight:1 }}>{pl.price}</span>
                 <span style={{ fontFamily:'sans-serif', fontSize:14, color:B.muted }}>/{pl.usd}</span>
               </div>
               <p style={{ fontFamily:'sans-serif', fontSize:13.5, color:B.muted, marginBottom:24, lineHeight:1.6, fontWeight:300 }}>{pl.desc}</p>
@@ -581,7 +570,7 @@ function Pricing({ onContact }: { onContact: () => void }) {
           <span style={{ fontSize:20 }}>💬</span>
           <div>
             <div style={{ fontFamily:'sans-serif', fontSize:14, fontWeight:700, color:'#fff' }}>Need something custom? Not sure which plan fits?</div>
-            <div style={{ fontFamily:'sans-serif', fontSize:13, color:B.muted, fontWeight:300 }}>Message us on WhatsApp and we'll put together a quote in under 2 hours.</div>
+            <div style={{ fontFamily:'sans-serif', fontSize:13, color:B.muted, fontWeight:300 }}>Message us on WhatsApp and we&apos;ll put together a quote in under 2 hours.</div>
           </div>
           <a href="https://wa.me/2347068565954" target="_blank" rel="noreferrer"
             style={{ marginLeft:'auto', background:'#25d366', border:'none', color:'#fff', padding:'10px 22px', borderRadius:8, fontSize:13, fontWeight:700, textDecoration:'none', fontFamily:'sans-serif', whiteSpace:'nowrap' }}>
@@ -589,7 +578,7 @@ function Pricing({ onContact }: { onContact: () => void }) {
           </a>
         </div>
       </div>
-      <style>{`@media(max-width:860px){.jw-pricing-grid{grid-template-columns:1fr!important}}`}</style>
+      <style>{`@media(max-width:860px){.jw-pricing-grid{grid-template-columns:1fr!important}} @media(max-width:600px){.jw-pricing-grid .jw-plan{padding:24px 20px!important}}`}</style>
     </section>
   )
 }
@@ -597,7 +586,7 @@ function Pricing({ onContact }: { onContact: () => void }) {
 // ─── TESTIMONIALS ─────────────────────────────────────────────────────────────
 function Testimonials() {
   return (
-    <section style={{ background:B.offwhite, padding:'110px 32px' }}>
+    <section style={{ background:B.offwhite, padding:'80px 20px' }}>
       <div style={{ maxWidth:1200, margin:'0 auto' }}>
         <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', marginBottom:52, flexWrap:'wrap', gap:20 }}>
           <div>
@@ -620,7 +609,7 @@ function Testimonials() {
               onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderTopColor='transparent'; el.style.boxShadow='none'; el.style.transform='none' }}
             >
               <Stars n={t.stars} />
-              <p style={{ fontFamily:'sans-serif', fontSize:14.5, color:B.ink, lineHeight:1.75, margin:'14px 0 20px', fontWeight:300 }}>"{t.text}"</p>
+              <p style={{ fontFamily:'sans-serif', fontSize:14.5, color:B.ink, lineHeight:1.75, margin:'14px 0 20px', fontWeight:300 }}>{`"${t.text}"`}</p>
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', borderTop:`1px solid ${B.borderL}`, paddingTop:14 }}>
                 <div style={{ display:'flex', alignItems:'center', gap:10 }}>
                   <div style={{ width:34, height:34, borderRadius:'50%', background:`linear-gradient(135deg, ${B.teal}, #0ea5e9)`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:14, fontWeight:700, color:'#fff', fontFamily:'sans-serif' }}>{t.name[0]}</div>
@@ -641,8 +630,8 @@ function Testimonials() {
 // ─── ABOUT ────────────────────────────────────────────────────────────────────
 function About() {
   return (
-    <section id="about" style={{ background:B.navy, padding:'110px 32px' }}>
-      <div style={{ maxWidth:1200, margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:80, alignItems:'center' }} className="jw-about-grid">
+    <section id="about" style={{ background:B.navy, padding:'80px 20px' }}>
+      <div style={{ maxWidth:1200, margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:48, alignItems:'center' }} className="jw-about-grid">
         {/* Left */}
         <div>
           <div style={{ fontFamily:'sans-serif', fontSize:11, color:B.teal, letterSpacing:'0.16em', textTransform:'uppercase', fontWeight:700, marginBottom:12 }}>About JugoWeb</div>
@@ -653,7 +642,7 @@ function About() {
             JugoWeb Studio was built on a single observation: small businesses in the UK, US, Canada and Australia pay £2,000–£10,000 for websites that should cost a fraction of that. We close that gap.
           </p>
           <p style={{ fontFamily:'sans-serif', fontSize:15.5, color:'rgba(255,255,255,0.6)', lineHeight:1.85, marginBottom:36, fontWeight:300 }}>
-            We're a remote-first studio. Our lower cost base means we pass the savings directly to clients — delivering work that rivals what local agencies charge multiples for, at a price that actually makes sense for a small business.
+            We&apos;re a remote-first studio. Our lower cost base means we pass the savings directly to clients — delivering work that rivals what local agencies charge multiples for, at a price that actually makes sense for a small business.
           </p>
 
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:14 }}>
@@ -676,14 +665,14 @@ function About() {
         <div>
           <div style={{ background:B.navy2, border:`1px solid ${B.border}`, borderRadius:14, padding:'28px', marginBottom:16 }}>
             <div style={{ display:'flex', alignItems:'center', gap:14, marginBottom:20 }}>
-              <JWLogo size={52} light />
+              <img src="/logo2.png" alt="JugoWeb Studio" style={{ height:52, width:'auto' }} />
               <div>
                 <div style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", fontSize:20, fontWeight:800, color:'#fff' }}>JugoWeb<span style={{ color:B.teal }}> Studio</span></div>
                 <div style={{ fontFamily:'sans-serif', fontSize:12, color:B.muted }}>jugowebstudio.com</div>
               </div>
             </div>
             <div style={{ fontFamily:'sans-serif', fontSize:14.5, color:'rgba(255,255,255,0.6)', lineHeight:1.8, fontWeight:300 }}>
-              "We believe every small business deserves a professional online presence — not just the ones who can afford a local agency. That belief is why we built JugoWeb."
+              &quot;We believe every small business deserves a professional online presence — not just the ones who can afford a local agency. That belief is why we built JugoWeb.&quot;
             </div>
           </div>
 
@@ -707,7 +696,7 @@ function About() {
 function FAQ() {
   const [open, setOpen] = useState<number|null>(0)
   return (
-    <section style={{ background:B.offwhite, padding:'100px 32px' }}>
+    <section style={{ background:B.offwhite, padding:'72px 20px' }}>
       <div style={{ maxWidth:800, margin:'0 auto' }}>
         <div style={{ textAlign:'center', marginBottom:52 }}>
           <div style={{ fontFamily:'sans-serif', fontSize:11, color:B.teal, letterSpacing:'0.16em', textTransform:'uppercase', fontWeight:700, marginBottom:12 }}>FAQ</div>
@@ -717,7 +706,7 @@ function FAQ() {
           <div key={i} style={{ background:B.white, border:`1px solid ${open===i ? B.tealBdr : B.borderL}`, borderRadius:10, marginBottom:10, overflow:'hidden', transition:'border-color 0.2s' }}>
             <button onClick={() => setOpen(open===i ? null : i)}
               style={{ width:'100%', padding:'20px 24px', background:'none', border:'none', display:'flex', justifyContent:'space-between', alignItems:'center', cursor:'pointer', textAlign:'left' }}>
-              <span style={{ fontFamily:'sans-serif', fontSize:15.5, fontWeight:700, color:B.ink }}>{f.q}</span>
+              <span style={{ fontFamily:'sans-serif', fontSize:'clamp(14px,3.5vw,15.5px)', fontWeight:700, color:B.ink }}>{f.q}</span>
               <span style={{ fontSize:20, color:B.teal, flexShrink:0, marginLeft:12, transition:'transform 0.2s', transform: open===i ? 'rotate(45deg)' : 'none', display:'inline-block' }}>+</span>
             </button>
             {open===i && (
@@ -748,8 +737,8 @@ function Contact() {
   const inp = { display:'block', width:'100%', padding:'13px 15px', background:'rgba(255,255,255,0.05)', border:`1px solid ${B.border}`, borderRadius:8, color:'#fff', fontSize:14, fontFamily:'sans-serif', fontWeight:300, boxSizing:'border-box' as const, transition:'border-color 0.2s' }
 
   return (
-    <section id="contact" style={{ background:B.navy, padding:'110px 32px' }}>
-      <div style={{ maxWidth:1200, margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:80 }} className="jw-contact-grid">
+    <section id="contact" style={{ background:B.navy, padding:'80px 20px' }}>
+      <div style={{ maxWidth:1200, margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:48 }} className="jw-contact-grid">
 
         {/* Left */}
         <div>
@@ -758,7 +747,7 @@ function Contact() {
             Ready to Get<br /><span style={{ color:B.teal }}>Online?</span>
           </h2>
           <p style={{ fontFamily:'sans-serif', fontSize:15, color:'rgba(255,255,255,0.55)', lineHeight:1.85, marginBottom:36, fontWeight:300 }}>
-            Tell us about your business and what you need. We'll reply within 2 hours with a fixed quote and timeline — no obligation, no sales pressure.
+            Tell us about your business and what you need. We&apos;ll reply within 2 hours with a fixed quote and timeline — no obligation, no sales pressure.
           </p>
 
           {/* WhatsApp CTA */}
@@ -848,7 +837,7 @@ function QuoteModal({ open, onClose }: { open:boolean; onClose:() => void }) {
           <div style={{ textAlign:'center', padding:'32px 0' }}>
             <div style={{ fontSize:52, marginBottom:14 }}>🚀</div>
             <h3 style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", fontSize:22, fontWeight:800, color:B.ink, marginBottom:8 }}>Quote Request Sent!</h3>
-            <p style={{ fontFamily:'sans-serif', fontSize:14, color:B.muted, fontWeight:300, lineHeight:1.7 }}>We'll reply within 2 hours with a fixed price for your project.</p>
+            <p style={{ fontFamily:'sans-serif', fontSize:14, color:B.muted, fontWeight:300, lineHeight:1.7 }}>We&apos;ll reply within 2 hours with a fixed price for your project.</p>
             <button onClick={onClose} style={{ marginTop:20, background:B.navy, border:'none', color:'#fff', padding:'12px 28px', borderRadius:8, fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'sans-serif' }}>Close</button>
           </div>
         ) : (
@@ -856,7 +845,7 @@ function QuoteModal({ open, onClose }: { open:boolean; onClose:() => void }) {
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:20 }}>
               <div>
                 <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:4 }}>
-                  <JWLogo size={32} />
+                  <img src="/logo2.png" alt="JugoWeb Studio" style={{ height:32, width:'auto' }} />
                   <span style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", fontSize:16, fontWeight:800, color:B.ink }}>JugoWeb<span style={{ color:B.teal }}> Studio</span></span>
                 </div>
                 <p style={{ fontFamily:'sans-serif', fontSize:12, color:B.muted, margin:0, fontWeight:300 }}>Free quote · 2-hour reply</p>
@@ -902,7 +891,7 @@ function Footer({ onContact }: { onContact: () => void }) {
         <div style={{ display:'grid', gridTemplateColumns:'2fr 1fr 1fr 1fr', gap:48, marginBottom:52, paddingBottom:52, borderBottom:`1px solid ${B.border}` }} className="jw-footer-grid">
           <div>
             <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:16 }}>
-              <JWLogo size={44} light />
+              <img src="/logo2.png" alt="JugoWeb Studio" style={{ height:44, width:'auto' }} />
               <div>
                 <div style={{ fontFamily:"'Plus Jakarta Sans',sans-serif", fontSize:18, fontWeight:800, color:'#fff' }}>JugoWeb<span style={{ color:B.teal }}> Studio</span></div>
                 <div style={{ fontFamily:'sans-serif', fontSize:10, color:'rgba(255,255,255,0.3)', letterSpacing:'0.16em', textTransform:'uppercase' }}>Web Design & Digital</div>
@@ -983,7 +972,7 @@ export default function JugoWebStudio() {
   }, [])
 
   return (
-    <div style={{ background: B.navy }}>
+    <div style={{ background: B.navy, overflowX:'hidden' }}>
       <Navbar onContact={() => setQuoteOpen(true)} />
       <Hero onContact={() => setQuoteOpen(true)} />
       <TrustedBy />
